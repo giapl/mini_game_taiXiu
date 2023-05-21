@@ -19,32 +19,35 @@ public class taixiu {
         double taiKhoanNguoiChoi = 5000000;
         Scanner sc = new Scanner(System.in);
         // ham local so theo quoc gia
-        Locale lc=new Locale("vi","VN");
+        Locale lc = new Locale("vi", "VN");
         // ham numberformat dien so de doc hon
-        NumberFormat num=NumberFormat.getInstance();
-        int luaChon =1;
+        NumberFormat num = NumberFormat.getInstance();
+        int luaChon = 1;
         do {
             System.out.println("---------- moi ban lua chon ------------");
             System.out.println(" chon (1) de tiep tuc choi.");
-            System.out.println("chon (phim bat ki) de thoat.");
+            System.out.println(" chon (2) rut tien ");
+            System.out.println(" chon (phim bat ki) de thoat.");
             luaChon = sc.nextInt();
             if (luaChon == 1) {
                 System.out.println("---------- Bat Dau Choi ------------");
                 // dat cuoc
-                System.out.println("***** tai khoan cua ban: " +num.format(taiKhoanNguoiChoi) + " ban muon cuoc bao nhieu ");
+                System.out.println("***** tai khoan cua ban: " + num.format(taiKhoanNguoiChoi) + " ban muon cuoc bao nhieu ");
                 double datCuoc;
                 do {
-                    System.out.println("**** dat cuoc (0<so tien cuoc <=" + num.format(taiKhoanNguoiChoi));
+                    System.out.println("***** dat cuoc 0<so tien cuoc <=" + num.format(taiKhoanNguoiChoi));
+                    System.out.print(" Moi ban dat cuoc: ");
                     datCuoc = sc.nextDouble();
                 } while (datCuoc <= 0 || datCuoc > taiKhoanNguoiChoi);
                 // chon tai hoac xiu
-                int luaChonTaiXiu ;
+                int luaChonTaiXiu;
                 do {
                     System.out.println("***** chon: 1 <-> xiu hoac 2 <-> tai ");
+                    System.out.print(" Moi ban chon cau :");
                     luaChonTaiXiu = sc.nextInt();
-                    if(luaChonTaiXiu==1){
+                    if (luaChonTaiXiu == 1) {
                         System.out.println("ban da chon xiu");
-                    }else {
+                    } else {
                         System.out.println("ban da chon tai");
                     }
                 } while (luaChonTaiXiu != 1 && luaChonTaiXiu != 2);
@@ -73,7 +76,7 @@ public class taixiu {
                         taiKhoanNguoiChoi = taiKhoanNguoiChoi - datCuoc;
                         System.out.println("tai khoan cua ban la:" + num.format(taiKhoanNguoiChoi));
                     }
-                } else  {
+                } else {
                     System.out.println("ket qua la :" + tong + " => tai ");
                     if (luaChonTaiXiu == 2) {
                         System.out.println("xin chuc mung ban da thang dc so tien:" + datCuoc);
@@ -85,7 +88,27 @@ public class taixiu {
                         System.out.println("tai khoan cua ban la:" + num.format(taiKhoanNguoiChoi));
                     }
                 }
-            }
-        } while (luaChon ==1);
+                sc.nextLine();
+            } else if (luaChon == 2) {
+                    do {
+                        System.out.println("so tien hien co cua ban:" + taiKhoanNguoiChoi);
+                        System.out.println("xin moi ban nhap ten ngan hang:");
+                        sc.nextLine();
+                        String nganHang = sc.nextLine();
+                        System.out.println("moi ban nhap so tai khoan");
+                        String sotaikhoan = sc.nextLine();
+                        System.out.println("nhap so tien can rut:");
+                        double sotiencanrut = sc.nextDouble();
+                        if (sotiencanrut <= taiKhoanNguoiChoi) {
+                            System.out.println("ban da rut thanh cong so tien:" + sotiencanrut);
+                            taiKhoanNguoiChoi = taiKhoanNguoiChoi - sotiencanrut;
+                            System.out.println("so tien con lai cua ban:" + taiKhoanNguoiChoi);
+
+                        } else {
+                            System.out.println("ban rut khong thanh cong");
+                        }
+                    } while (taiKhoanNguoiChoi != 0 && taiKhoanNguoiChoi == 0);
+                }
+        } while (luaChon == 1 || luaChon == 2) ;
     }
 }
